@@ -1,18 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
 
 char *extract_the_reaminder_buffer(const char *str)
 {
     size_t size;
     size_t count;
-    size_t remainder;
-    char *buffer;
     size_t start;
+    size_t end;
+    char *buffer;
 
     count = 0;
     while(str[count] != '\n' && str[count] != '\0')
         count++;
-    if (!str[count])
+    if (!str[count] || !str[count + 1])
     {
         buffer = malloc(1);
         if (!buffer)
@@ -21,22 +20,17 @@ char *extract_the_reaminder_buffer(const char *str)
     }
     else 
     {
-        if (str[count + 1])
-            count++;
+        count++;
         start = count;
-        size = 0;
-        while (str[count] != '\n' && str[count] != '\0')
-        {
-            size++;
+        while (str[count] != '\0')
             count++;
-        }
-        if (str[count])
-            size++;
+        end = count;
+        size = end - start;
         buffer = malloc(size + 1);
         if (!buffer)
             return (NULL);
         count = 0;
-        while (count < size)
+        while (start < end)
         {
             buffer[count] = str[start];
             start++;
@@ -44,9 +38,6 @@ char *extract_the_reaminder_buffer(const char *str)
         }
         buffer[count] = '\0';
     }
+    
     return (buffer);
-}
-int main()
-{
-    printf("%s", extract_the_reaminder_buffer("Hello\nWorld1337"));
 }

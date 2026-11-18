@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../../printf/ft_printf.h"
+#include "header.h"
+
 
 char *extract_a_line(const char *str)
 {

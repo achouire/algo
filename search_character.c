@@ -1,5 +1,4 @@
-#include  <stdio.h>
-#include "ft_printf.h"
+#include "header.h"
 
 size_t ft_search_character(const char *str)
 {
